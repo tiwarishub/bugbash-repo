@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+    name: vscodebugbash2
+    labels:
+        app: vscodebugbash2
+    annotations:
+        kubernetes.io/ingress.class: addon-http-application-routing
+spec:
+    rules:
+        - host: vscodebugbash28b10-vscodebugbash2.9ef632358f8949dd856b.centralus.aksapp.io
+          http:
+            paths:
+            - path: /
+              backend:
+                serviceName: vscodebugbash2
+                servicePort: 8080

@@ -9,7 +9,7 @@ jobs:
     - uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-    - uses: kpTestOrg/ARMtesting
+    - uses: kpTestOrg/ARMtesting@master
       with:
         scope: resourcegroup
         subscriptionId: c00d16c7-6c1f-4c03-9be1-6934a4c49682

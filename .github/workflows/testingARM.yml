@@ -11,7 +11,8 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
     - uses: whiteducksoftware/azure-arm-action-js@v3
       with:
-        scope: subscription
+        scope: resourcegroup
         subscriptionId: c00d16c7-6c1f-4c03-9be1-6934a4c49682
+        resourceGroupName: kptest
         templateLocation: ./examples/template/template.json
         parameters: ./examples/template/parameters.json

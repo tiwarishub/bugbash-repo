@@ -19,7 +19,7 @@ describe('sampleUnitTests', function () {
 			"query": {
 			},
 			"body": {
-                "name": "Bill"
+                "name": "Billy"
 			}
 		};
         azfunction(mockContext, mockRequest).then((result) => {

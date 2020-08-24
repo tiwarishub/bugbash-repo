@@ -16,4 +16,5 @@ jobs:
         resourceGroupName: kptest
         templateLocation: examples/template/template.json
         parameters: examples/template/parameters.json
+    - run: echo ${{ steps.deploy.outputs.containerName }}
         

@@ -12,8 +12,6 @@ jobs:
     - uses: kpTestOrg/ARMtesting@master
       id: deploy
       with:
-        scope: resourcegroup
-        subscriptionId: c00d16c7-6c1f-4c03-9be1-6934a4c49682
-        resourceGroupName: kptest              
-        templateLocation: https://github.com/Azure/azure-quickstart-templates/blob/master/101-aks/azuredeploy.json
-        parameters: https://github.com/Azure/azure-quickstart-templates/blob/master/101-aks/azuredeploy.parameters.json
+        scope: managementgroup
+        location: westeurope               
+        templateLocation: examples/template/template.json

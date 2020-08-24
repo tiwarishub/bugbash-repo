@@ -16,7 +16,7 @@
             ]
         },
         "imageName": {
-            "type": "subscriptionlevel"
+            "type": "resgrp"
         },
         "osType": {
             "type": "string",

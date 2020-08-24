@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "sites_kptestwebapp0_name": {
-            "defaultValue": "kpnewapp5",
+            "defaultValue": "kpnewappnn",
             "type": "String"
         },
         "serverfarms_nodejs_testbuiltin_hostingPlan_externalid": {

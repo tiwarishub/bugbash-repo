@@ -17,4 +17,3 @@ jobs:
         resourceGroupName: kptest
         deploymentMode: Complete
         templateLocation: examples/template/template.json
-        

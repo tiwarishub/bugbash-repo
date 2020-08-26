@@ -12,6 +12,7 @@ jobs:
     - uses: kpTestOrg/ARMtesting@master
       id: deploy
       with:
-        scope: managementgroup
+        scope: subscription
         location: westeurope               
         templateLocation: examples/template/template.json
+        parameters: examples/template/parameters.json

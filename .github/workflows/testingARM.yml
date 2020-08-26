@@ -13,5 +13,6 @@ jobs:
       id: deploy
       with:
         scope: resourcegroup
+        resourceGroupName: demoRg
         templateLocation: examples/template/template.json
         parameters: examples/template/parameters.json

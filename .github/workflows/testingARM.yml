@@ -16,4 +16,4 @@ jobs:
         subscriptionId: c00d16c7-6c1f-4c03-9be1-6934a4c49682
         location: centralus
         templateLocation: "https://raw.githubusercontent.com/Azure/azure-docs-json-samples/master/azure-resource-manager/emptyRG.json"
-        parameters: rgName=kpdemorg rgLocation=centralus
+        parameters: examples/template/parameters.json

@@ -15,5 +15,5 @@ jobs:
         scope: managementgroup
         subscriptionId: c00d16c7-6c1f-4c03-9be1-6934a4c49682
         location: WestUS
-        templateLocation: examples/template/template.json
-        parameters: examples/template/parameters.json
+        templateLocation: https://kpteststorage0.blob.core.windows.net/kptestcontainer/mgtemp.json
+        parameters: https://kpteststorage0.blob.core.windows.net/kptestcontainer/mgparam.json

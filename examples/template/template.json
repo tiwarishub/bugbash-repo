@@ -3,29 +3,21 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "rgName": {
-      "type": "string",
-      "metadata": {
-        "description": "Name of the resourceGroup to create"
-      }
+      "type": "string"
     },
     "rgLocation": {
-      "type": "string",
-      "metadata": {
-        "description": "Location for the resourceGroup"
-      }
+      "type": "string"
     }
   },
-  "variables": { },
+  "variables": {},
   "resources": [
     {
       "type": "Microsoft.Resources/resourceGroups",
-      "apiVersion": "2019-10-01",
+      "apiVersion": "2020-06-01",
       "name": "[parameters('rgName')]",
       "location": "[parameters('rgLocation')]",
-      "tags": {
-        "Note": "subscription level deployment"
-      },
       "properties": {}
     }
-  ]
+  ],
+  "outputs": {}
 }

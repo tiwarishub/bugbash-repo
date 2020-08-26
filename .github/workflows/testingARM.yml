@@ -15,4 +15,3 @@ jobs:
         scope: resourcegroup
         resourceGroupName: demoRg
         templateLocation: examples/template/template.json
-        parameters: examples/template/parameters.json

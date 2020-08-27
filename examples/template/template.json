@@ -3,9 +3,11 @@
    "contentVersion":"1.0.0.1",
    "parameters":{
       "rgName":{
+         "defaultValue":"kpnewrgrp",
          "type":"string"
       },
       "rgLocation":{
+         "defaultValue":"centralus",
          "type":"string"
       },
       "tags":{

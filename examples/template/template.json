@@ -1,9 +1,9 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-    "contentVersion":"1.0.0.0",
+    "contentVersion": "1.0.0.0",
     "parameters": {
         "sites_kptestwebapp0_name": {
-            "defaultValue": "qqqqq",
+            "defaultValue": "kprgapp3",
             "type": "String"
         },
         "serverfarms_nodejs_testbuiltin_hostingPlan_externalid": {
@@ -11,8 +11,8 @@
             "type": "String"
         }
     },
-    "variables":{},
-    "resources":[
+    "variables": {},
+    "resources": [
         {
             "type": "Microsoft.Web/sites",
             "apiVersion": "2018-11-01",

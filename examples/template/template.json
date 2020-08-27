@@ -1,62 +1,138 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2019-08-01/managementGroupDeploymentTemplate.json#",
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "targetmg": {
-            "type": "string",
-            "metadata": {
-                "description": "Target Management Group"
-            }
+        "sites_kptestwebapp0_name": {
+            "defaultValue": "kprgapp",
+            "type": "String"
         },
-        "allowedLocations": {
-            "type": "array",
-            "defaultValue": [
-                "australiaeast",
-                "australiasoutheast",
-                "australiacentral"
-            ],
-            "metadata": {
-                "description": "An array of the allowed locations, all other locations will be denied by the created policy."
-            }
+        "serverfarms_nodejs_testbuiltin_hostingPlan_externalid": {
+            "defaultValue": "/subscriptions/c00d16c7-6c1f-4c03-9be1-6934a4c49682/resourceGroups/nodejs-testbuiltinafb8/providers/Microsoft.Web/serverfarms/nodejs-testbuiltin-hostingPlan",
+            "type": "String"
         }
     },
-    "variables": {
-        "mgScope": "[tenantResourceId('Microsoft.Management/managementGroups', parameters('targetMG'))]",
-        "policyDefinition": "LocationRestriction"
-    },
+    "variables": {},
     "resources": [
         {
-            "type": "Microsoft.Authorization/policyDefinitions",
-            "name": "[variables('policyDefinition')]",
-            "apiVersion": "2019-09-01",
+            "type": "Microsoft.Web/sites",
+            "apiVersion": "2018-11-01",
+            "name": "[parameters('sites_kptestwebapp0_name')]",
+            "location": "Central US",
+            "kind": "app,linux",
             "properties": {
-                "policyType": "Custom",
-                "mode": "All",
-                "parameters": {
-                },
-                "policyRule": {
-                    "if": {
-                        "not": {
-                            "field": "location",
-                            "in": "[parameters('allowedLocations')]"
-                        }
+                "enabled": true,
+                "hostNameSslStates": [
+                    {
+                        "name": "[concat(parameters('sites_kptestwebapp0_name'), '.azurewebsites.net')]",
+                        "sslState": "Disabled",
+                        "hostType": "Standard"
                     },
-                    "then": {
-                        "effect": "deny"
+                    {
+                        "name": "[concat(parameters('sites_kptestwebapp0_name'), '.scm.azurewebsites.net')]",
+                        "sslState": "Disabled",
+                        "hostType": "Repository"
                     }
-                }
+                ],
+                "serverFarmId": "[parameters('serverfarms_nodejs_testbuiltin_hostingPlan_externalid')]",
+                "reserved": true,
+                "isXenon": false,
+                "hyperV": false,
+                "siteConfig": {},
+                "scmSiteAlsoStopped": false,
+                "clientAffinityEnabled": false,
+                "clientCertEnabled": false,
+                "hostNamesDisabled": false,
+                "containerSize": 0,
+                "dailyMemoryTimeQuota": 0,
+                "httpsOnly": false,
+                "redundancyMode": "None"
             }
         },
         {
-            "type": "Microsoft.Authorization/policyAssignments",
-            "name": "location-lock",
-            "apiVersion": "2019-09-01",
+            "type": "Microsoft.Web/sites/config",
+            "apiVersion": "2018-11-01",
+            "name": "[concat(parameters('sites_kptestwebapp0_name'), '/web')]",
+            "location": "Central US",
             "dependsOn": [
-                "[variables('policyDefinition')]"
+                "[resourceId('Microsoft.Web/sites', parameters('sites_kptestwebapp0_name'))]"
             ],
             "properties": {
-                "scope": "[variables('mgScope')]",
-                "policyDefinitionId": "[extensionResourceId(variables('mgScope'), 'Microsoft.Authorization/policyDefinitions', variables('policyDefinition'))]"
+                "numberOfWorkers": 1,
+                "defaultDocuments": [
+                    "Default.htm",
+                    "Default.html",
+                    "Default.asp",
+                    "index.htm",
+                    "index.html",
+                    "iisstart.htm",
+                    "default.aspx",
+                    "index.php",
+                    "hostingstart.html"
+                ],
+                "netFrameworkVersion": "v4.0",
+                "linuxFxVersion": "NODE|10-lts",
+                "requestTracingEnabled": false,
+                "remoteDebuggingEnabled": false,
+                "remoteDebuggingVersion": "VS2019",
+                "httpLoggingEnabled": false,
+                "logsDirectorySizeLimit": 35,
+                "detailedErrorLoggingEnabled": false,
+                "publishingUsername": "$kptestwebapp0",
+                "azureStorageAccounts": {},
+                "scmType": "None",
+                "use32BitWorkerProcess": true,
+                "webSocketsEnabled": false,
+                "alwaysOn": true,
+                "managedPipelineMode": "Integrated",
+                "virtualApplications": [
+                    {
+                        "virtualPath": "/",
+                        "physicalPath": "site\\wwwroot",
+                        "preloadEnabled": true
+                    }
+                ],
+                "loadBalancing": "LeastRequests",
+                "experiments": {
+                    "rampUpRules": []
+                },
+                "autoHealEnabled": false,
+                "localMySqlEnabled": false,
+                "ipSecurityRestrictions": [
+                    {
+                        "ipAddress": "Any",
+                        "action": "Allow",
+                        "priority": 1,
+                        "name": "Allow all",
+                        "description": "Allow all access"
+                    }
+                ],
+                "scmIpSecurityRestrictions": [
+                    {
+                        "ipAddress": "Any",
+                        "action": "Allow",
+                        "priority": 1,
+                        "name": "Allow all",
+                        "description": "Allow all access"
+                    }
+                ],
+                "scmIpSecurityRestrictionsUseMain": false,
+                "http20Enabled": false,
+                "minTlsVersion": "1.2",
+                "ftpsState": "AllAllowed",
+                "reservedInstanceCount": 0
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites/hostNameBindings",
+            "apiVersion": "2018-11-01",
+            "name": "[concat(parameters('sites_kptestwebapp0_name'), '/', parameters('sites_kptestwebapp0_name'), '.azurewebsites.net')]",
+            "location": "Central US",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_kptestwebapp0_name'))]"
+            ],
+            "properties": {
+                "siteName": "kptestwebapp0",
+                "hostNameType": "Verified"
             }
         }
     ]

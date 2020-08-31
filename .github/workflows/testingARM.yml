@@ -9,7 +9,7 @@ jobs:
     - uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-    - uses: kanika1894/ARMtesting
+    - uses: kanika1894/ARMtesting@master
       id: deploy
       with:
         scope: resourcegroup

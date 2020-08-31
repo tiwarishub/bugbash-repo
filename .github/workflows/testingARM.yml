@@ -9,12 +9,10 @@ jobs:
     - uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-    - uses: kpTestOrg/ARMtesting@master
+    - uses: kanika1894/ARMtesting
       id: deploy
       with:
         scope: resourcegroup
         subscriptionId: c00d16c7-6c1f-4c03-9be1-6934a4c49682
         resourceGroupName: kptest2
         templateLocation: examples/template/template.json
-        parameters: sites_kptestwebapp0_name=github-action
-        

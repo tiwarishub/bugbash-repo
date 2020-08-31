@@ -12,7 +12,7 @@ jobs:
     - uses: arm-action-private/arm@master
       id: deploy
       with:
-        scope: resourcegroup
+        scope: subscriptionId
         subscriptionId: c00d16c7-6c1f-4c03-9be1-6934a4c49682
-        resourceGroupName: kptest2
+        location: centralus
         templateLocation: examples/template/template.json

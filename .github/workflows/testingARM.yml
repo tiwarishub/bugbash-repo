@@ -15,5 +15,5 @@ jobs:
         scope: managementgroup
         managementGroupId: kptestnewmg101
         location: WestUS
-        template: https://kpteststorage0.blob.core.windows.net/kptestcontainer/mgtemp.json
+        templateLocation: https://kpteststorage0.blob.core.windows.net/kptestcontainer/mgtemp.json
         parameters: https://kpteststorage0.blob.core.windows.net/kptestcontainer/mgparam.json

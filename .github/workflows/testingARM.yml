@@ -9,7 +9,7 @@ jobs:
     - uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-    - uses: kpTestOrg/ARMtesting@master
+    - uses: arm-action-private/arm@master
       id: deploy
       with:
         scope: resourcegroup

@@ -12,7 +12,8 @@ jobs:
     - uses: arm-action-private/arm@master
       id: deploy
       with:
-        scope: resourcegroup
-        subscriptionId: c00d16c7-6c1f-4c03-9be1-6934a4c49682
-        resourceGroupName: kptest2
-        templateLocation: examples/template/template.json
+        scope: managementgroup
+        location: WestUS
+        managementGroupId: kptestnewmg101
+        templateLocation: https://kpteststorage0.blob.core.windows.net/kptestcontainer/mgtemp.json
+        parameters: https://kpteststorage0.blob.core.windows.net/kptestcontainer/mgparam.json

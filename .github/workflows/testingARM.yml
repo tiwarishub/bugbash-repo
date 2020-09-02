@@ -9,6 +9,7 @@ jobs:
     - uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - run: az --version
     - uses: kanika1894/tempforARM@master
       id: deploy
       with:

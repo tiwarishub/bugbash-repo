@@ -10,7 +10,7 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - uses: kanika1894/tempforARM@master
+    - uses: kpTestOrg/ARMTesting
       id: deploy
       with:
         scope: resourcegroup

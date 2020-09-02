@@ -13,11 +13,9 @@ jobs:
     - uses: kpTestOrg/ARMtesting@master
       id: deploy
       with:
-        scope: resourcegroup
-        resourceGroupName: kptest2
-        subscriptionId: c00d16c7-6c1f-4c03-9be1-6934a4c49682
-        templates: examples/template/template.json
-        parameters: examples/template/parameters.json
-        
-    - run: echo ${{ steps.deploy.outputs.containerName }}    
-    
+          scope: subscription
+          subscriptionId: c00d16c7-6c1f-4c03-9be1-6934a4c49682
+          region: centralus
+          templates: https://raw.githubusercontent.com/Azure/azure-docs-json-samples/master/azure-resource-manager/emptyRG.json
+          parameters: rgName=demoResourceGroup rgLocation=centralus
+

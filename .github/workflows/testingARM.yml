@@ -13,7 +13,8 @@ jobs:
     - uses: kanika1894/tempforARM@master
       id: deploy
       with:
-        subscriptionId: c00d16c7-6c1f-4c03-9be1-6934a4c49682
-        resourceGroupName: kptest2
-        templateLocation: examples/template/template.json
-        parameters: webAppName=withoutrg
+        scope: managementgroup
+        managementGroupId: kptestnewmg101
+        location: WestUS
+        templateLocation: https://kpteststorage0.blob.core.windows.net/kptestcontainer/mgtemp.json
+        parameters: https://kpteststorage0.blob.core.windows.net/kptestcontainer/mgparam.json

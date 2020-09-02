@@ -10,7 +10,7 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - uses: kanika1894/tempforARM@master
+    - uses: arm-action-private/arm@master
       id: deploy
       with:
         scope: managementgroup

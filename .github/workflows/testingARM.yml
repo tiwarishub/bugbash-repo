@@ -13,9 +13,8 @@ jobs:
     - uses: kpTestOrg/ARMtesting@master
       id: deploy
       with:
-          scope: subscription
-          subscriptionId: c00d16c7-6c1f-4c03-9be1-6934a4c49682
-          region: centralus
-          templates: https://raw.githubusercontent.com/Azure/azure-docs-json-samples/master/azure-resource-manager/emptyRG.json
-          parameters: rgName=demoResourceGroup rgLocation=centralus
-
+        scope: managementgroup
+        managementGroupId: kptestnewmg101
+        location: WestUS
+        templateLocation: https://kpteststorage0.blob.core.windows.net/kptestcontainer/mgtemp.json
+        parameters: https://kpteststorage0.blob.core.windows.net/kptestcontainer/mgparam.json

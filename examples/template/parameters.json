@@ -12,7 +12,7 @@
             "value": "Public"
         },
         "imageName": {
-            "value": "whiteduck/sample-mvc"
+            "value": "demo/sample-mvc"
         },
         "osType": {
             "value": "Linux"

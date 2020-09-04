@@ -11,7 +11,7 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - uses: kpTestOrg/ARMtesting@master
-      id: deploy
+      id: deployaction
       with:
         scope: resourcegroup
         resourceGroupName: kptest2
@@ -19,4 +19,4 @@ jobs:
         templates: examples/template/template.json
         parameters: examples/template/parameters.json
     
-    - run: echo ${{ steps.deploy.outputs.containerName }}
+    - run: echo ${{ steps.deployaction.outputs.containerName }}

@@ -10,7 +10,7 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - uses: kpTestOrg/tempForARM@master
+    - uses: Azure/arm-deploy@main
       id: deployaction1
       with:
         scope: resourcegroup

@@ -10,11 +10,11 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - uses: kpTestOrg/ARMTesting@master
+    - uses: kpTestOrg/tempForARM@master
       id: deployaction1
       with:
         scope: resourcegroup
-        resourceGroupName: kptest2@
+        resourceGroupName: kptest2
         subscriptionId: c00d16c7-6c1f-4c03-9be1-6934a4c49682
         template: examples/template/template.json
         parameters: examples/template/parameters.json

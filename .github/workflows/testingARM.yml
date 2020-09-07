@@ -10,7 +10,7 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - uses: Azure/arm-deploy@main
+    - uses: Azure/arm-deploy@master
       id: deployaction1
       with:
         scope: resourcegroup

@@ -13,8 +13,10 @@ jobs:
     - uses: Azure/arm-deploy@v1
       id: deployaction1
       with:
-        scope: managementgroup
-        managementGroupId: kptestnewmg101
-        region: WestUS
-        template: https://kpteststorage0.blob.core.windows.net/kptestcontainer/mgtemp.json
-        parameters: https://kpteststorage0.blob.core.windows.net/kptestcontainer/mgparam.json
+        scope: resourcegroup
+        resourceGroupName: kptest2
+        subscriptionId: c00d16c7-6c1f-4c03-9be1-6934a4c49682
+        template: examples/template/template.json
+        parameters: examples/template/parameters.json
+    
+    - run: echo ${{ steps.deployaction1.outputs.containerName }}

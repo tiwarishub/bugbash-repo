@@ -16,6 +16,5 @@ jobs:
         scope: managementgroup
         managementgroupid: E2eTestGroupForArmAction
         region: WestUS
-        template: https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/managementgroup-deployments/mg-policy/azuredeploy.json
-        parameters: https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/managementgroup-deployments/mg-policy/azuredeploy.parameters.json
-    
+        template: examples/template/template.json
+        parameters: examples/template/parameters.json

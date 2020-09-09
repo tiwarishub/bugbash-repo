@@ -14,10 +14,10 @@ jobs:
       id: deployaction1
       with:
         scope: resourcegroup
-        resourceGroupName: kptest
-        subscriptionId: c00d16c7-6c1f-4c03-9be1-6934a4c49682
-        template: examples/template/template.json
-        parameters: examples/template/parameters.json
+        resourceGroupName: demoResourceGroup
+        subscriptionId: 393a91ee-f98d-43ff-b964-009bda0fdf2e
+        template: https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-webapp-basic-linux/azuredeploy.json
+        parameters: https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-webapp-basic-linux/azuredeploy.parameters.json
         deploymentMode: incremental
     
     - run: echo ${{ steps.deployaction1.outputs.containerName }}

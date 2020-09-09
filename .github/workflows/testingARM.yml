@@ -13,11 +13,9 @@ jobs:
     - uses: kpTestOrg/ARMtesting@master
       id: deployaction1
       with:
-        scope: resourcegroup
-        resourceGroupName: demoResourceGroup
-        subscriptionId: 393a91ee-f98d-43ff-b964-009bda0fdf2e
-        template: https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-webapp-basic-linux/azuredeploy.json
-        parameters: https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-webapp-basic-linux/azuredeploy.parameters.json
-        deploymentMode: incremental
+        scope: managementgroup
+        managementgroupid: E2eTestGroupForArmAction
+        region: WestUS
+        template: https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/managementgroup-deployments/mg-policy/azuredeploy.json
+        parameters: https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/managementgroup-deployments/mg-policy/azuredeploy.parameters.json
     
-    - run: echo ${{ steps.deployaction1.outputs.containerName }}

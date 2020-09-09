@@ -1,91 +1,63 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "$schema": "https://schema.management.azure.com/schemas/2019-08-01/managementGroupDeploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "location": {
-            "type": "string"
-        },
-        "containerName": {
-            "type": "string"
-        },
-        "imageType": {
+        "targetMG": {
             "type": "string",
-            "allowedValues": [
-                "Public",
-                "Private"
-            ]
+            "metadata": {
+                "description": "Target Management Group"
+            }
         },
-        "imageName": {
-            "type": "string"
-        },
-        "osType": {
-            "type": "string",
-            "allowedValues": [
-                "Linux",
-                "Windows"
-            ]
-        },
-        "numberCpuCores": {
-            "type": "string"
-        },
-        "memory": {
-            "type": "string"
-        },
-        "restartPolicy": {
-            "type": "string",
-            "allowedValues": [
-                "OnFailure",
-                "Always",
-                "Never"
-            ]
-        },
-        "ipAddressType": {
-            "type": "string"
-        },
-        "ports": {
-            "type": "array"
+        "allowedLocations": {
+            "type": "array",
+            "defaultValue": [
+                "australiaeast",
+                "australiasoutheast",
+                "australiacentral"
+            ],
+            "metadata": {
+                "description": "An array of the allowed locations, all other locations will be denied by the created policy."
+            }
         }
+    },
+    "variables": {
+        "mgScope": "[tenantResourceId('Microsoft.Management/managementGroups', parameters('targetMG'))]",
+        "policyDefinition": "LocationRestriction"
     },
     "resources": [
         {
-            "location": "[parameters('location')]",
-            "name": "[parameters('containerName')]",
-            "type": "Microsoft.ContainerInstance/containerGroups",
-            "apiVersion": "2018-10-01",
+            "type": "Microsoft.Authorization/policyDefinitions",
+            "name": "[variables('policyDefinition')]",
+            "apiVersion": "2019-09-01",
             "properties": {
-                "containers": [
-                    {
-                        "name": "[parameters('containerName')]",
-                        "properties": {
-                            "image": "[parameters('imageName')]",
-                            "resources": {
-                                "requests": {
-                                    "cpu": "[int(parameters('numberCpuCores'))]",
-                                    "memoryInGB": "[float(parameters('memory'))]"
-                                }
-                            },
-                            "ports": "[parameters('ports')]"
+                "policyType": "Custom",
+                "mode": "All",
+                "parameters": {
+                },
+                "policyRule": {
+                    "if": {
+                        "not": {
+                            "field": "location",
+                            "in": "[parameters('allowedLocations')]"
                         }
+                    },
+                    "then": {
+                        "effect": "deny"
                     }
-                ],
-                "restartPolicy": "[parameters('restartPolicy')]",
-                "osType": "[parameters('osType')]",
-                "ipAddress": {
-                    "type": "[parameters('ipAddressType')]",
-                    "ports": "[parameters('ports')]"
                 }
-            },
-            "tags": {}
-        }
-    ],
-    "outputs": {
-        "location": {
-            "type": "string",
-            "value": "[parameters('location')]"
+            }
         },
-        "containerName": {
-            "type": "string",
-            "value": "[parameters('containerName')]"
+        {
+            "type": "Microsoft.Authorization/policyAssignments",
+            "name": "location-lock",
+            "apiVersion": "2019-09-01",
+            "dependsOn": [
+                "[variables('policyDefinition')]"
+            ],
+            "properties": {
+                "scope": "[variables('mgScope')]",
+                "policyDefinitionId": "[extensionResourceId(variables('mgScope'), 'Microsoft.Authorization/policyDefinitions', variables('policyDefinition'))]"
+            }
         }
-    }
+    ]
 }

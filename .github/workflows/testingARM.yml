@@ -14,7 +14,7 @@ jobs:
       id: deployaction1
       with:
         scope: managementgroup
-        managementgroupid: E2eTestGroupForArmAction
+        managementgroupid: tiwarishub-mnggp
         region: WestUS
         template: examples/template/template.json
         parameters: examples/template/parameters.json

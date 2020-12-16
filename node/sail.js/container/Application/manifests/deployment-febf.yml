@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: "aatiwarishubaks-febf"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: "aatiwarishubaks-febf"
+  template:
+    metadata:
+      labels:
+        app: "aatiwarishubaks-febf"
+    spec:
+      containers:
+        - name: "aatiwarishubaks-febf"
+          image: "aaaatiwarishubregistry.azurecr.io/aatiwarishubaksfebf"
+          ports:
+          - containerPort: 8080
